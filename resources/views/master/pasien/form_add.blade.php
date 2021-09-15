@@ -1,6 +1,6 @@
 @extends('layouts.master')
-@section('title','Data pasien')
-@section('breadcrumb','Data pasien')
+@section('title','Tambah pasien')
+@section('breadcrumb','Tambah pasien')
 @section('content')
 <div class="card" style="width:100%;">
     <div class="card-body">

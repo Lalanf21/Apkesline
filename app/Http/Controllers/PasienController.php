@@ -93,7 +93,7 @@ class PasienController extends Controller
             ->rawColumns(['action'])
             ->addIndexColumn()
             ->addColumn('action', function ($item) {
-                $action = '<a href="/pasien/'.$item->id.'/edit" class="btn btn-warning btn-sm"> <i class="fas fa-edit"></i> Update</a>';
+                $action = '<a href="/pasien/'.$item->id.'/edit" class="btn btn-warning btn-sm"> <i class="fas fa-edit"></i> Edit</a>';
                 $action .= ' | <form action="/pasien/'.$item->id.'" method="post" class="d-inline">'
                 .csrf_field().method_field("delete").'
                 <button onclick="return confirm(\'Anda yakin ?\')" class="btn btn-danger btn-sm"><i class="fa fa-trash"></i> Hapus</button></form>';

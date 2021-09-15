@@ -1,10 +1,10 @@
 @extends('layouts.master')
-@section('title','Tambah users')
-@section('breadcrumb','Tambah users')
+@section('title','Edit data users')
+@section('breadcrumb','Edit data users')
 @section('content')
 <div class="card" style="width:100%;">
     <div class="card-body">
-        <h4 class="card-title" style="color: black;">Tambah users</h4>
+        <h4 class="card-title" style="color: black;">Edit users</h4>
         <hr>
     </div>
 </div>
@@ -24,14 +24,14 @@
     <div class="col-md-12">
         <div class="card">
                 <div class="card-body">
-                    <form method="POST" action="{{ route('users.store') }}">
-                    @method('post')
+                    <form method="POST" action="{{ route('users.update', $data->id) }}">
+                    @method('put')
                     @csrf
                     <div class="row">
                         <div class="col">
                             <div class="form-group">
                                 <label for="username">Username</label>
-                                <input type="text" autofocus class="form-control" name="username" value="{{ old('username') }}">
+                                <input type="text" class="form-control" name="username" value="{{ $data->username }}">
                                 @error('username')
                                 <div class="text-danger">{{ $message }}</div>
                                 @enderror
@@ -40,7 +40,7 @@
                         <div class="col">
                             <div class="form-group">
                                 <label for="nama">Nama Lengkap</label>
-                                <input type="text" class="form-control" name="nama" value="{{ old('nama') }}">
+                                <input type="text" class="form-control" name="nama" value="{{ $data->nama }}">
                                 @error('nama')
                                 <div class="text-danger">{{ $message }}</div>
                                 @enderror
@@ -55,7 +55,7 @@
                                 <select name="gender_id" id="gender_id" class="form-control">
                                     <option value="">==PILIH==</option>
                                     @foreach($gender as $value)
-                                        <option value="{{ $value->id }}" >
+                                        <option value="{{ $value->id }}"  {{ ($value->id===$data->gender_id) ? 'selected' : '' }} >
                                             {{ $value->gender }}
                                         </option>
                                     @endforeach
@@ -65,31 +65,22 @@
                                 @enderror
                             </div>
                         </div>
-                        <div class="col">
-                            <div class="form-group">
-                                <label for="password">Password</label>
-                                <input type="password" class="form-control" name="password">
-                                @error('password')
-                                <div class="text-danger">{{ $message }}</div>
-                                @enderror
-                            </div>
+                        <div class="form-group">
+                            <label for="level_user_id"> Level </label>
+                            <select name="level_user_id" id="level_user_id" class="form-control"  onchange="DokterForm()" >
+                                <option value="">==PILIH==</option>    
+                            @foreach($level as $value)
+                                <option value="{{ $value->id }}"  {{ ($value->id===$data->level_user_id) ? 'selected' : '' }} >
+                                    {{ $value->level_name }}
+                                </option>
+                            @endforeach
+                            </select>
+                            @error('level_user_id')
+                            <div class="text-danger">{{ $message }}</div>
+                            @enderror
                         </div>
                     </div>
                     
-                    <div class="form-group">
-                        <label for="level_user_id"> Level </label>
-                        <select name="level_user_id" id="level_user_id" class="form-control"  onchange="DokterForm()" >
-                            <option value="">==PILIH==</option>    
-                        @foreach($level as $value)
-                            <option value="{{ $value->id }}" >
-                                {{ $value->level_name }}
-                            </option>
-                        @endforeach
-                        </select>
-                        @error('level_user_id')
-                        <div class="text-danger">{{ $message }}</div>
-                        @enderror
-                    </div>
 
                     <div id="dokter">
                         <div class="row">
@@ -118,7 +109,7 @@
                             <select name="spesialis_id" id="spesialis_id" class="form-control">
                             <option value=""> ==PILIH== </option>
                                 @foreach($spesialis as $value)
-                                    <option value="{{ $value->id }}" >
+                                    <option value="{{ $value->id }}">
                                         {{ $value->nama_spesialis }}
                                     </option>
                                 @endforeach
@@ -153,7 +144,7 @@
                     </div>
 
                     <div class="card-footer text-right">
-                        <button type="submit" class="btn btn-success"><i class="fas fa-save"></i> Simpan </button>
+                        <button type="submit" class="btn btn-warning"><i class="fas fa-edit"></i> Edit </button>
                     </div>
                 </form>
                 </div>   
@@ -164,8 +155,8 @@
 
 @push('after-script')
 <script>
-    $("#dokter").hide();
 
+    $("#dokter").hide();
     function DokterForm(){
         var level = $("#level_user_id").val();
 

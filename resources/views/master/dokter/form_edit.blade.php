@@ -1,6 +1,6 @@
 @extends('layouts.master')
-@section('title','Data dokter')
-@section('breadcrumb','Data dokter')
+@section('title','Edit data dokter')
+@section('breadcrumb','Edit data dokter')
 @section('content')
 <div class="card" style="width:100%;">
     <div class="card-body">
@@ -71,7 +71,7 @@
                         @enderror
                     </div>
                     <div class="card-footer text-right">
-                        <button type="submit" class="btn btn-warning"><i class="fas fa-edit"></i> Update </button>
+                        <button type="submit" class="btn btn-warning"><i class="fas fa-edit"></i> edit </button>
                     </div>
                 </form>
                 </div>   
