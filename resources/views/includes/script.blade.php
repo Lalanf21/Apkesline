@@ -1,4 +1,5 @@
 <!--   Core JS Files   -->
+<script src="{{ asset('assets/js/jquery.js') }}"></script>
 <script src="{{ asset('assets/js/core/popper.min.js') }}"></script>
 <script src="{{ asset('assets/js/core/bootstrap.min.js') }}"></script>
 <script src="{{ asset('assets/js/plugins/perfect-scrollbar.min.js') }}"></script>
@@ -15,7 +16,6 @@
 </script>
 
 <!-- Control Center for Soft Dashboard: parallax effects, scripts for the example pages etc -->
-<script src="{{ asset('assets/js/soft-ui-dashboard.min.js?v=1.0.3') }}"></script>
 
 {{-- dataTables js --}}
 <script src="https://cdn.datatables.net/1.10.19/js/jquery.dataTables.min.js"></script>
@@ -27,3 +27,6 @@
 <script src="https://cdn.datatables.net/buttons/1.5.6/js/buttons.html5.min.js"></script>
 <script src="https://cdn.datatables.net/buttons/1.5.6/js/buttons.print.min.js"></script>
 {{-- end of datatables js --}}
+
+{{-- template js --}}
+<script src="{{ asset('assets/js/soft-ui-dashboard.min.js') }}"></script>

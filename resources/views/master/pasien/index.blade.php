@@ -1,12 +1,12 @@
 @extends('layouts.master')
-@section('title','Data dokter')
-@section('breadcrumb','Data dokter')
+@section('title','Data pasien')
+@section('breadcrumb','Data pasien')
 @section('content')
 <div class="card" style="width:100%;">
     <div class="card-body">
-        <h2 class="card-title" style="color: black;">Management dokter</h2>
+        <h2 class="card-title" style="color: black;">Management pasien</h2>
         <hr>
-        <a href="{{ route('dokter.create') }}" class="btn btn-primary">Tambah Data</a>
+        <a href="{{ route('pasien.create') }}" class="btn btn-primary">Tambah Data</a>
     </div>
 </div>
  @if (session('status'))
@@ -26,17 +26,17 @@
  <div class="col-md-12">
     <div class="container bg-white p-4" style="border-radius:3px;box-shadow:rgba(0, 0, 0, 0.03) 0px 4px 8px 0px">
         <div class="table-responsive">
-            <table id="dokter" class="table align-items-center table-flush">
+            <table id="pasien" class="table align-items-center table-flush">
                 <thead class="thead-dark">
                     <tr class="text-center">
                         <th scope="col">#</th>
-                        <th scope="col">NIP</th>
+                        <th scope="col">NIK</th>
                         <th scope="col">Nama</th>
                         <th scope="col">No Hp</th>
+                        <th scope="col">Alamat</th>
                         <th scope="col">Jenis kelamin</th>
-                        <th scope="col">Spesialis</th>
-                        <th scope="col">Jasa dokter</th>
-                        <th scope="col">Durasi Konsultasi</th>
+                        <th scope="col">Kode unik</th>
+                        <th scope="col">Saldo</th>
                         <th scope="col">Aksi</th>
                     </tr>
                 </thead>
@@ -51,31 +51,31 @@
 @push('after-script')
 <script>
     $(function() {
-        $('#dokter').DataTable({
+        $('#pasien').DataTable({
             processing: true
             , serverSide: true
-            , ajax: "{{ @route('list-dokter') }}",
+            , ajax: "{{ @route('list-pasien') }}",
             dom: 'Bfrtlip',
             buttons: [
                 {
                     extend: 'print',
                     exportOptions: 
                     {
-                        columns: [ 0,1,2,3,4,5,6]
+                        columns: [ 0,1,2,3,4,5]
                     },
                 }, 
                 {
                     extend: 'excel',
                     exportOptions: 
                     {
-                        columns: [ 0,1,2,3,4,5,6]
+                        columns: [ 0,1,2,3,4,5]
                     },
                 }, 
                 {
                     extend: 'pdf',
                     exportOptions: 
                     {
-                        columns: [ 0,1,2,3,4,5,6]
+                        columns: [ 0,1,2,3,4,5]
                     },
                 }, 
             ],
@@ -84,26 +84,25 @@
                     data: 'DT_RowIndex'
                 }, 
                 {
-                    data: 'nip'
+                    data: 'nik'
                 }, 
                 {
-                    data: 'users.nama'
+                    data: 'nama'
                 }, 
                 {
                     data: 'no_hp'
                 },
                 {
-                    data: 'users.gender.gender'
+                    data: 'alamat'
                 },
                 {
-                    data: 'spesialis.nama_spesialis'
+                    data: 'gender.gender'
                 },
                 {
-                    data: 'biaya_charge'
-                }
-                ,
+                    data: 'kode_unik'
+                },
                 {
-                    data: 'durasi'
+                    data: 'saldo'
                 }
                 ,
                 {

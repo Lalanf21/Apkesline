@@ -18,17 +18,17 @@
           <h6 class="ps-4 ms-2 text-uppercase text-xs font-weight-bolder opacity-6">Data master</h6>
         </li>
         <li class="nav-item">
-          <a class="nav-link" href="">
+          <a class="nav-link" href="{{ route('pasien.index') }}">
             <span class="nav-link-text ms-1"> <i class="fas fa-user"></i> Data pasien</span>
           </a>
         </li>
         <li class="nav-item">
-          <a class="nav-link" href="">
+          <a class="nav-link" href="{{ route('dokter.index') }}">
             <span class="nav-link-text ms-1"> <i class="fas fa-user-md"></i> Data dokter</span>
           </a>
         </li>
         <li class="nav-item">
-          <a class="nav-link" href="">
+          <a class="nav-link" href="{{ route('users.index') }}">
             <span class="nav-link-text ms-1"> <i class="fas fa-users"></i> Data user</span>
           </a>
         </li>

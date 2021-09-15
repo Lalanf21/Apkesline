@@ -8,7 +8,7 @@ class DokterModel extends Model
 {
     protected $fillable = [
         'nip',
-        'user_id',
+        'users_id',
         'spesialis_id',
         'biaya_charge',
         'durasi',
@@ -16,4 +16,15 @@ class DokterModel extends Model
     ];
 
     protected $table = 'dokter';
+
+    // relasi
+    public function spesialis()
+    {
+        return $this->belongsTo('\App\Model\SpesialisModel','spesialis_id');
+    }
+
+    public function users()
+    {
+        return $this->belongsTo('\App\Model\UsersModel', 'users_id');
+    }
 }
