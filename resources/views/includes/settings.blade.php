@@ -26,8 +26,13 @@
         <div class="mt-3">
           <h6 class="mb-0">Akun</h6>
         </div>
-        <a class="btn bg-gradient-primary mt-4 w-100" href="" type="button"> <i class="fas fa-sign-in-alt"></i> Logout</a>
-        </div>
+        <a href="{{ route('logout') }}" onclick="event.preventDefault();document.getElementById('logout-form').submit();" class=" btn bg-gradient-primary mt-4 w-100">
+          <i class="fas fa-sign-out-alt"></i> Logout
+        </a>
+        <form id="logout-form" action="{{ route('logout') }}" method="POST" class="d-none">
+            @csrf
+        </form>
       </div>
     </div>
   </div>
+</div>

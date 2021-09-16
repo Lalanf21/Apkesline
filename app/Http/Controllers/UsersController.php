@@ -81,7 +81,7 @@ class UsersController extends Controller
 
             $data['nama'] = $request->nama;
             $data['username'] = $request->username;
-            $data['password'] = $request->password;
+            $data['password'] = Hash::make($request->password);
             $data['gender_id'] = $request->gender_id;
             $data['level_user_id'] = $request->level_user_id;
             UsersModel::create($data);

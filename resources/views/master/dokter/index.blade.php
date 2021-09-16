@@ -6,7 +6,7 @@
     <div class="card-body">
         <h2 class="card-title" style="color: black;">Management dokter</h2>
         <hr>
-        <a href="{{ route('users.create') }}" class="btn btn-primary">Tambah Data</a>
+        <a href="{{ route('users.create') }}" class="btn bg-gradient-primary">Tambah Data</a>
     </div>
 </div>
  @if (session('status'))

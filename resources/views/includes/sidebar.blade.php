@@ -34,7 +34,13 @@
         </li>
       </ul>
     </div>
+    
     <div class="sidenav-footer mx-3 ">
-      <a class="btn bg-gradient-primary mt-4 w-100" href="" type="button"> Logout <i class="fas fa-sign-in-alt"></i></a>
+      <a href="{{ route('logout') }}" onclick="event.preventDefault();document.getElementById('logout-form').submit();" class=" btn bg-gradient-primary mt-4 w-100">
+            <i class="fas fa-sign-out-alt"></i> Logout
+      </a>
+      <form id="logout-form" action="{{ route('logout') }}" method="POST" class="d-none">
+          @csrf
+      </form>
     </div>
   </aside>

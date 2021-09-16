@@ -6,7 +6,7 @@
     <div class="card-body">
         <h2 class="card-title" style="color: black;">Management pasien</h2>
         <hr>
-        <a href="{{ route('pasien.create') }}" class="btn btn-primary">Tambah Data</a>
+        <a href="{{ route('pasien.create') }}" class="btn bg-gradient-primary">Tambah Data</a>
     </div>
 </div>
  @if (session('status'))
@@ -37,6 +37,7 @@
                         <th scope="col">Jenis kelamin</th>
                         <th scope="col">Kode unik</th>
                         <th scope="col">Saldo</th>
+                        <th scope="col">Topup</th>
                         <th scope="col">Aksi</th>
                     </tr>
                 </thead>
@@ -44,8 +45,30 @@
         </div>
     </div>
 </div>  
-    
+
+{{-- modal topup --}}
+<div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+  <div class="modal-dialog modal-dialog-centered" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="exampleModalLabel">Topup saldo pasien</h5>
+      </div>
+      <div class="modal-body">
+        <form action="" method="post">
+        <label for="topup">Nominal Topup</label>
+        <input type="text" name="topup" id="topup" class="form-control">
+        <span class="text-muted">*Dalam satuan Rp</span>
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn bg-gradient-secondary" data-bs-dismiss="modal">Close</button>
+        <button type="submit" class="btn bg-gradient-primary">  <i class="fas fa-save"></i> Simpan</button>
+        </form>
+      </div>
+    </div>
+  </div>
 </div>
+{{-- /modal topup --}}
+
 @endsection
 
 @push('after-script')
@@ -103,6 +126,12 @@
                 },
                 {
                     data: 'saldo'
+                }
+                ,
+                {
+                    data: 'topup',
+                    orderable: false,
+                    searchable: false
                 }
                 ,
                 {

@@ -90,7 +90,7 @@ class PasienController extends Controller
     {
         $item = PasienModel::with('gender')->get() ;
         return DataTables::of($item)
-            ->rawColumns(['action'])
+            ->rawColumns(['action','topup'])
             ->addIndexColumn()
             ->addColumn('action', function ($item) {
                 $action = '<a href="/pasien/'.$item->id.'/edit" class="btn btn-warning btn-sm"> <i class="fas fa-edit"></i> Edit</a>';
@@ -98,6 +98,9 @@ class PasienController extends Controller
                 .csrf_field().method_field("delete").'
                 <button onclick="return confirm(\'Anda yakin ?\')" class="btn btn-danger btn-sm"><i class="fa fa-trash"></i> Hapus</button></form>';
                 return $action;
+            })
+            ->addColumn('topup', function($item){
+                return '<button type="button" data-bs-toggle="modal" data-bs-target="#exampleModal" class="btn btn-light"><i class="fas fa-wallet"></i></button>';
             })
             ->make(true);
     }

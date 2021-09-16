@@ -42,11 +42,11 @@
                 <div class="card-body">
                 <form action="{{ route('login') }}" class="mt-2" method="POST" role="form">
                 @csrf
-                <label for="nip"> NIP </label>
+                <label for="username"> Username </label>
                     <div class="mb-3">
-                        <input id="nip" type="text" class="form-control @error('nip') is-invalid @enderror" name="nip" value="{{ old('nip') }}" required autofocus>
+                        <input id="username" type="text" class="form-control @error('username') is-invalid @enderror" name="username" value="{{ old('username') }}" required autofocus>
 
-                        @error('nip')
+                        @error('username')
                             <span class="invalid-feedback" role="alert">
                                 <strong>{{ $message }}</strong>
                             </span>
