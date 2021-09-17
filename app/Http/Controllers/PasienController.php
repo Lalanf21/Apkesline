@@ -38,8 +38,14 @@ class PasienController extends Controller
         ]);
 
         $data = $request->all();
+        $data['status_id'] = 1;
 
-        PasienModel::create($data);
+        $newData = PasienModel::create($data);
+        if (!$newData->id) {    
+            session()->flash('error', 'Data gagal di simpan ');
+        }else{
+            session()->flash('success', 'Data berhasil di simpan ');
+        }
 
         return redirect()->route('pasien.index')->with('status', 'Berhasil di Simpan !');
     }

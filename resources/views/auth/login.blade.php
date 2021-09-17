@@ -25,7 +25,7 @@
               <div class="card card-plain mt-8">
                 <div class="card-header pb-0 text-left bg-transparent">
                   <h3 class="font-weight-bolder text-info text-gradient">Selamat Datang </h3>
-                  <p class="mb-0">Masukkan NIP dan Password untuk masuk dashboard</p>
+                  <p class="mb-0">Masukkan Username dan Password untuk masuk dashboard</p>
                 </div>
                 @if (session('status'))
                 <div class="row">

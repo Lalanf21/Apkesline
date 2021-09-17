@@ -8,18 +8,13 @@
         <hr>
     </div>
 </div>
- @if (session('status'))
-    <div class="row">
-        <div class="col-md-12">
-            <div class="alert alert-success alert-dismissible fade show" role="alert">
-                <strong>{{ session('status') }}</strong>
-                <button type="button" class="close" data-dismiss="alert" aria-label="Close">
-                    <span aria-hidden="true">&times;</span>
-                </button>
-            </div>
-        </div>
+
+<div class="row my-3">
+    <div class="col">
+        <a href="{{ route('pasien.index') }}" class="btn btn-info"><i class="fas fa-arrow-left"></i> Kembali </a>
     </div>
-@endif
+</div> 
+
 <div class="row my-3 justify-content-center">
     <div class="col-md-8">
         <div class="card">
@@ -29,28 +24,28 @@
                     @csrf
                     <div class="form-group">
                         <label for="nama">Nama lengkap</label>
-                        <input type="text" autofocus class="form-control" name="nama" value="{{ $data->nama }}">
+                        <input type="text" autofocus required class="form-control" name="nama" value="{{ $data->nama }}">
                         @error('nama')
                         <div class="text-danger">{{ $message }}</div>
                         @enderror
                     </div>
                     <div class="form-group">
                         <label for="nik">Nomor KTP</label>
-                        <input type="text" class="form-control" name="nik" value="{{ $data->nik }}">
+                        <input type="text" class="form-control" name="nik" value="{{ $data->nik }}" required >
                         @error('nik')
                         <div class="text-danger">{{ $message }}</div>
                         @enderror
                     </div>
                     <div class="form-group">
                         <label for="alamat">Alamat</label>
-                        <textarea name="alamat" id="alamat" cols="30" rows="10" class="form-control">{{ $data->alamat }}</textarea>
+                        <textarea name="alamat" id="alamat" cols="30" rows="10" class="form-control" required >{{ $data->alamat }}</textarea>
                         @error('alamat')
                         <div class="text-danger">{{ $message }}</div>
                         @enderror
                     </div>
                     <div class="form-group">
                         <label for="no_hp">No hp</label>
-                        <input type="text" class="form-control" name="no_hp" value="{{ $data->no_hp }}">
+                        <input type="text" class="form-control" name="no_hp" value="{{ $data->no_hp }}" required >
                         @error('no_hp')
                         <div class="text-danger">{{ $message }}</div>
                         @enderror
@@ -72,7 +67,7 @@
                         <div class="col-6 col-md-3">
                             <div class="form-group">
                                 <label for="kode_unik">kode unik</label>
-                                <input type="text" name="kode_unik" value="{{ $data->kode_unik }}" class="form-control @error('kode_unik') is-invalid @enderror">
+                                <input type="text" name="kode_unik" value="{{ $data->kode_unik }}" class="form-control @error('kode_unik') is-invalid @enderror" required>
                                 @error('kode_unik')
                                 <div class="text-danger">{{ $message }}</div>
                                 @enderror
@@ -84,14 +79,14 @@
                     </div>
                     <div class="form-group">
                         <label for="saldo"> Saldo </label>
-                        <input type="text" value="0" class="form-control" name="saldo" value="{{ $data->saldo }}">
+                        <input type="number" value="0" class="form-control" name="saldo" value="{{ $data->saldo }}">
                         <span class="text-muted">*Dalam satuan Rp</span>
                         @error('saldo')
                         <div class="text-danger">{{ $message }}</div>
                         @enderror
                     </div>
                     <div class="card-footer text-right">
-                        <button type="submit" class="btn btn-warning"><i class="fas fa-edit"></i> Edit </button>
+                        <button type="submit" class="btn btn-info"><i class="fas fa-edit"></i> Edit </button>
                     </div>
                 </form>
                 </div>   

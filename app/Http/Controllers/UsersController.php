@@ -63,6 +63,7 @@ class UsersController extends Controller
             $dataDokter['durasi'] = $request->durasi;
             $dataDokter['no_hp'] = $request->no_hp;
             $dataDokter['users_id'] = $store->id;
+            $dataDokter['status_id'] = 10;
 
             DokterModel::create($dataDokter);
         }else{
@@ -84,6 +85,7 @@ class UsersController extends Controller
             $data['password'] = Hash::make($request->password);
             $data['gender_id'] = $request->gender_id;
             $data['level_user_id'] = $request->level_user_id;
+            $data['status_id'] = 10;
             UsersModel::create($data);
         }
 

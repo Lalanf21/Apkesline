@@ -56,7 +56,8 @@ class DokterController extends Controller
         ]);
 
         $data->update($request->all());
-        return redirect()->route('dokter.index')->with('status', 'Berhasil di Update !');
+        session()->flash('success', 'Berhasil di update');
+        return redirect()->route('dokter.index');
 
 
     }
@@ -65,7 +66,10 @@ class DokterController extends Controller
     {
         $data = DokterModel::where('id',$id)->first();
         $data->delete();
-        return redirect()->route('dokter.index')->with('status', 'Berhasil di Hapus !');
+
+        session()->flash('success', 'Berhasil di hapus');
+
+        return redirect()->route('dokter.index');
     }
 
     public function list_dokter()

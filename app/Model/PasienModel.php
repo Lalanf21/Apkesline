@@ -14,6 +14,7 @@ class PasienModel extends Model
         'gender_id',
         'kode_unik',
         'saldo',
+        'status_id'
     ];
 
     protected $table = 'pasien';
