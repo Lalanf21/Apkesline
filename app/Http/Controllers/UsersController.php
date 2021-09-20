@@ -38,7 +38,6 @@ class UsersController extends Controller
                 'nama' => 'required',
                 'gender_id' => 'required|numeric',
                 'password' => 'required',
-                'level_user_id' => 'required|numeric',
                 'nip' => 'required',
                 'no_hp' => 'required|numeric',
                 'spesialis_id' => 'required|numeric',
@@ -50,22 +49,24 @@ class UsersController extends Controller
                 'numeric' => 'Isi dengan angka !'
             ]);
             
+            // store data users
             $data['nama'] = $request->nama;
             $data['username'] = $request->username;
             $data['password'] = Hash::make($request->password);
             $data['gender_id'] = $request->gender_id;
-            $data['level_user_id'] = $request->level_user_id;
-            $store = UsersModel::create($data);
+            $data['level_user_id'] = 3;
+            $data['status_id'] = 10;
+            $users = UsersModel::create($data);
 
+            // store data dokter
             $dataDokter['nip'] = $request->nip;
             $dataDokter['spesialis_id'] = $request->spesialis_id;
             $dataDokter['biaya_charge'] = $request->biaya_charge;
             $dataDokter['durasi'] = $request->durasi;
             $dataDokter['no_hp'] = $request->no_hp;
-            $dataDokter['users_id'] = $store->id;
+            $dataDokter['users_id'] = $users->id;
             $dataDokter['status_id'] = 10;
-
-            DokterModel::create($dataDokter);
+            $dokter = DokterModel::create($dataDokter);
         }else{
             $request->validate(
             [
@@ -86,10 +87,17 @@ class UsersController extends Controller
             $data['gender_id'] = $request->gender_id;
             $data['level_user_id'] = $request->level_user_id;
             $data['status_id'] = 10;
-            UsersModel::create($data);
+            $users = UsersModel::create($data);
         }
 
-        return redirect()->route('users.index')->with('status', 'Berhasil di simpan !');
+        if (!$users->id || !$dokter->id) {    
+            session()->flash('error', 'Data gagal di simpan ');
+        }else{
+            session()->flash('success', 'Data berhasil di simpan ');
+        }
+        
+        return redirect()->route('users.index');
+
     }
 
     

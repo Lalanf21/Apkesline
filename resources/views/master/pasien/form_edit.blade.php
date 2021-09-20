@@ -85,6 +85,19 @@
                         <div class="text-danger">{{ $message }}</div>
                         @enderror
                     </div>
+                    <div class="form-group">
+                        <label for="status_id">Status</label>
+                        <select name="status_id" id="status_id" class="form-control">
+                            @foreach($status as $value)
+                                <option value="{{ $value->id }}"  {{ ($value->id===$data->status_id) ? 'selected' : '' }} >
+                                    {{ $value->status }}
+                                </option>
+                            @endforeach
+                        </select>
+                        @error('status_id')
+                        <div class="text-danger">{{ $message }}</div>
+                        @enderror
+                    </div>
                     <div class="card-footer text-right">
                         <button type="submit" class="btn btn-info"><i class="fas fa-edit"></i> Edit </button>
                     </div>

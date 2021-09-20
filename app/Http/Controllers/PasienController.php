@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Model\GenderModel;
 use App\Model\PasienModel;
+use App\Model\StatusModel;
 use Illuminate\Http\Request;
 use DataTables;
 
@@ -47,7 +48,7 @@ class PasienController extends Controller
             session()->flash('success', 'Data berhasil di simpan ');
         }
 
-        return redirect()->route('pasien.index')->with('status', 'Berhasil di Simpan !');
+        return redirect()->route('pasien.index');
     }
 
     public function show($id)
@@ -59,7 +60,9 @@ class PasienController extends Controller
     {
         $data = PasienModel::where('id',$id)->first();
         $gender = GenderModel::get();
-        return view('master.pasien.form_edit', compact('data','gender'));
+        $status = StatusModel::whereIn('id', [10, 4, 1])->get();
+        // dd($status);
+        return view('master.pasien.form_edit', compact('data','gender','status'));
     }
 
     public function update(Request $request, $id)
@@ -73,6 +76,7 @@ class PasienController extends Controller
             'nik' => 'required|numeric',
             'no_hp' => 'required|numeric',
             'gender_id' => 'required',
+            'status_id' => 'required',
             'kode_unik' => 'required',
             'saldo' => 'required|numeric',
         ],
@@ -82,19 +86,29 @@ class PasienController extends Controller
         ]);
 
         $data->update($request->all());
-        return redirect()->route('pasien.index')->with('status', 'Berhasil di Update !');
+        if (!$data->wasChanged()) {    
+            session()->flash('error', 'Data gagal di edit ');
+        }else{
+            session()->flash('success', 'Data berhasil di edit ');
+        }
+        return redirect()->route('pasien.index');
     }
 
     public function destroy($id)
     {
         $data = PasienModel::where('id',$id)->first();
-        $data->delete();
-        return redirect()->route('pasien.index')->with('status', 'Berhasil di Hapus !');
+        $data->update(['status_id'=> 2]);
+        if (!$data->wasChanged()) {    
+            session()->flash('error', 'Data gagal di hapus ');
+        }else{
+            session()->flash('success', 'Data berhasil di hapus ');
+        }
+        return redirect()->route('pasien.index');
     }
 
     public function list_pasien()
     {
-        $item = PasienModel::with('gender')->get() ;
+        $item = PasienModel::with(['gender','status'])->where('status_id','!=','2')->get() ;
         return DataTables::of($item)
             ->rawColumns(['action','topup'])
             ->addIndexColumn()

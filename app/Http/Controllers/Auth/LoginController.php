@@ -21,6 +21,11 @@ class LoginController extends Controller
         return 'username';
     }
 
+    public function showLoginForm()
+    {
+        return view('auth.login');
+    }
+
     protected function authenticated(Request $request, $user)
     {
         return redirect()->route('dashboard');

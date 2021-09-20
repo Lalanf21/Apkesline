@@ -56,7 +56,7 @@
                     </div>
                     <div class="form-group">
                         <label for="biaya_charge"> Jasa dokter* </label>
-                        <input type="text" value="{{ $data->biaya_charge }}" class="form-control" name="biaya_charge">
+                        <input type="number" value="{{ $data->biaya_charge }}" class="form-control" name="biaya_charge">
                         <div class="text-muted"> *Dalam satuan Rp </div>
                         @error('biaya_charge')
                         <span class="text-danger">{{ $message }}</span>
@@ -64,7 +64,7 @@
                     </div>
                     <div class="form-group">
                         <label for="durasi">Durasi konsultasi* </label>
-                        <input type="text" value="{{ $data->durasi }}" class="form-control" name="durasi">
+                        <input type="number" value="{{ $data->durasi }}" class="form-control" name="durasi">
                         <span class="text-muted">*Dalam satuan menit</span>
                         @error('durasi')
                         <div class="text-danger">{{ $message }}</div>

@@ -11,6 +11,7 @@ class UsersModel extends Model
         'password',
         'gender_id',
         'level_user_id',
+        'status_id',
         'nama',
     ];
 
@@ -30,5 +31,10 @@ class UsersModel extends Model
     public function dokter()
     {
         return $this->hasMany('\App\Model\DokterModel', 'users_id');
+    }
+
+    public function status()
+    {
+        return $this->belongsTo('\App\Model\StatusModel', 'status_id');
     }
 }

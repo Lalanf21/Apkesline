@@ -1,0 +1,15 @@
+status
+10 aktif
+3 blokir
+2 dihapus
+110 dokter kirim pesan
+100 pasien kirim pesan 
+4 Teraktivasi konsultasi
+120 terbaca
+1 tidak aktif
+
+akun
+admin{
+    username = admin
+    pass = pass
+}

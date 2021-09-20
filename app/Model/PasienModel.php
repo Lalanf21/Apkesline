@@ -23,4 +23,9 @@ class PasienModel extends Model
     {
         return $this->belongsTo('\App\Model\GenderModel', 'gender_id');
     }
+
+    public function status()
+    {
+        return $this->belongsTo('\App\Model\StatusModel', 'status_id');
+    }
 }

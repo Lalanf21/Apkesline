@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Model\DokterModel;
+use App\Model\GenderModel;
 use App\Model\SpesialisModel;
 use Illuminate\Http\Request;
 use DataTables;
@@ -17,6 +18,9 @@ class DokterController extends Controller
     public function create()
     {
         
+        $spesialis = SpesialisModel::all();
+        $gender = GenderModel::all();
+        return view('master.dokter.form_add', compact('gender','spesialis'));
     }
 
     public function store(Request $request)
@@ -56,7 +60,11 @@ class DokterController extends Controller
         ]);
 
         $data->update($request->all());
-        session()->flash('success', 'Berhasil di update');
+        if (!$data->wasChanged()) {    
+            session()->flash('error', 'Data gagal di edit ');
+        }else{
+            session()->flash('success', 'Data berhasil di edit ');
+        }
         return redirect()->route('dokter.index');
 
 
@@ -65,16 +73,19 @@ class DokterController extends Controller
     public function destroy($id)
     {
         $data = DokterModel::where('id',$id)->first();
-        $data->delete();
-
-        session()->flash('success', 'Berhasil di hapus');
+        $data->update(['status_id'=> 2]);
+        if (!$data->wasChanged()) {    
+            session()->flash('error', 'Data gagal di hapus ');
+        }else{
+            session()->flash('success', 'Data berhasil di hapus ');
+        }
 
         return redirect()->route('dokter.index');
     }
 
     public function list_dokter()
     {
-        $item = DokterModel::with(['spesialis','users.gender'])->get();
+        $item = DokterModel::with(['spesialis','users.gender','users.status'])->get();
         return DataTables::of($item)
             ->rawColumns(['action'])
             ->addIndexColumn()

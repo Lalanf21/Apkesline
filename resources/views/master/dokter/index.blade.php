@@ -6,11 +6,11 @@
     <div class="card-body">
         <h2 class="card-title" style="color: black;">Management dokter</h2>
         <hr>
-        <a href="{{ route('users.create') }}" class="btn bg-gradient-primary">Tambah Data</a>
+        <a href="{{ route('dokter.create') }}" class="btn bg-gradient-primary">Tambah Data</a>
     </div>
 </div>
  
-@include('alert')
+@include('includes.alert')
 
 <div class="row">
  <div class="col-md-12">
@@ -27,6 +27,7 @@
                         <th scope="col">Spesialis</th>
                         <th scope="col">Jasa dokter</th>
                         <th scope="col">Durasi Konsultasi</th>
+                        <th scope="col">Status</th>
                         <th scope="col">Aksi</th>
                     </tr>
                 </thead>
@@ -45,30 +46,6 @@
             processing: true
             , serverSide: true
             , ajax: "{{ @route('list-dokter') }}",
-            dom: 'Bfrtlip',
-            buttons: [
-                {
-                    extend: 'print',
-                    exportOptions: 
-                    {
-                        columns: [ 0,1,2,3,4,5,6]
-                    },
-                }, 
-                {
-                    extend: 'excel',
-                    exportOptions: 
-                    {
-                        columns: [ 0,1,2,3,4,5,6]
-                    },
-                }, 
-                {
-                    extend: 'pdf',
-                    exportOptions: 
-                    {
-                        columns: [ 0,1,2,3,4,5,6]
-                    },
-                }, 
-            ],
             columns: [
                 {
                     data: 'DT_RowIndex'
@@ -94,6 +71,10 @@
                 ,
                 {
                     data: 'durasi'
+                }
+                ,
+                {
+                    data: 'users.status.status'
                 }
                 ,
                 {

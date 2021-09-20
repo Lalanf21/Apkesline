@@ -10,7 +10,7 @@
     </div>
 </div>
  
-@include('alert')
+@include('includes.alert')
 
 <div class="row">
  <div class="col-md-12">

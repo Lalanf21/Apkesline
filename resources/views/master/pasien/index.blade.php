@@ -27,6 +27,7 @@
                         <th scope="col">Jenis kelamin</th>
                         <th scope="col">Kode unik</th>
                         <th scope="col">Saldo</th>
+                        <th scope="col">Status</th>
                         <th scope="col">Topup</th>
                         <th scope="col">Aksi</th>
                     </tr>
@@ -68,30 +69,6 @@
             processing: true
             , serverSide: true
             , ajax: "{{ @route('list-pasien') }}",
-            dom: 'Bfrtlip',
-            buttons: [
-                {
-                    extend: 'print',
-                    exportOptions: 
-                    {
-                        columns: [ 0,1,2,3,4,5]
-                    },
-                }, 
-                {
-                    extend: 'excel',
-                    exportOptions: 
-                    {
-                        columns: [ 0,1,2,3,4,5]
-                    },
-                }, 
-                {
-                    extend: 'pdf',
-                    exportOptions: 
-                    {
-                        columns: [ 0,1,2,3,4,5]
-                    },
-                }, 
-            ],
             columns: [
                 {
                     data: 'DT_RowIndex'
@@ -116,6 +93,9 @@
                 },
                 {
                     data: 'saldo'
+                },
+                {
+                    data: 'status.status'
                 }
                 ,
                 {
