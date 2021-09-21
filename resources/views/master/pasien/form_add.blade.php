@@ -9,7 +9,7 @@
     </div>
 </div>
 
-<div class="row my-3">
+<div class="row my-2">
     <div class="col">
         <a href="{{ route('pasien.index') }}" class="btn btn-info"><i class="fas fa-arrow-left"></i> Kembali </a>
     </div>

@@ -9,6 +9,13 @@
     </div>
 </div>
 
+<div class="row my-2">
+    <div class="col">
+        <a href="{{ route('dokter.index') }}" class="btn btn-info"><i class="fas fa-arrow-left"></i> Kembali </a>
+    </div>
+</div>
+
+
 <div class="row my-3 justify-content-center">
     <div class="col-md-12">
         <div class="card">
@@ -20,7 +27,7 @@
                         <div class="col">
                             <div class="form-group">
                                 <label for="username">Username</label>
-                                <input type="text" autofocus class="form-control" name="username" value="{{ old('username') }}" required>
+                                <input type="text" autofocus required class="form-control" name="username" value="{{ old('username') }}" required>
                                 @error('username')
                                 <div class="text-danger">{{ $message }}</div>
                                 @enderror
@@ -29,7 +36,7 @@
                         <div class="col">
                             <div class="form-group">
                                 <label for="nama">Nama Lengkap</label>
-                                <input type="text" class="form-control" name="nama" value="{{ old('nama') }}"required>
+                                <input type="text" class="form-control" name="nama" value="{{ old('nama') }}"required >
                                 @error('nama')
                                 <div class="text-danger">{{ $message }}</div>
                                 @enderror
@@ -57,7 +64,7 @@
                         <div class="col">
                             <div class="form-group">
                                 <label for="password">Password</label>
-                                <input type="password" class="form-control" name="password" required>
+                                <input type="password" class="form-control" name="password" required >
                                 @error('password')
                                 <div class="text-danger">{{ $message }}</div>
                                 @enderror

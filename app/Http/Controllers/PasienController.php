@@ -58,7 +58,7 @@ class PasienController extends Controller
 
     public function edit($id)
     {
-        $data = PasienModel::where('id',$id)->first();
+        $data = PasienModel::where('id',$id)->firstOrFail();
         $gender = GenderModel::get();
         $status = StatusModel::whereIn('id', [10, 4, 1])->get();
         // dd($status);
@@ -67,7 +67,7 @@ class PasienController extends Controller
 
     public function update(Request $request, $id)
     {
-        $data = PasienModel::where('id',$id)->first();
+        $data = PasienModel::where('id',$id)->firstOrFail();
 
         $request->validate(
         [
@@ -96,7 +96,7 @@ class PasienController extends Controller
 
     public function destroy($id)
     {
-        $data = PasienModel::where('id',$id)->first();
+        $data = PasienModel::where('id',$id)->firstOrFail();
         $data->update(['status_id'=> 2]);
         if (!$data->wasChanged()) {    
             session()->flash('error', 'Data gagal di hapus ');

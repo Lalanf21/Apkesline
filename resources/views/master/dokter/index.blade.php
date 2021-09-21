@@ -51,30 +51,30 @@
                     data: 'DT_RowIndex'
                 }, 
                 {
-                    data: 'nip'
+                    data: 'dokter[].nip'
                 }, 
                 {
-                    data: 'users.nama'
+                    data: 'nama'
                 }, 
                 {
-                    data: 'no_hp'
+                    data: 'dokter[].no_hp'
                 },
                 {
-                    data: 'users.gender.gender'
+                    data: 'gender.gender'
                 },
                 {
-                    data: 'spesialis.nama_spesialis'
+                    data: 'dokter[].spesialis.nama_spesialis'
                 },
                 {
-                    data: 'biaya_charge'
+                    data: 'dokter[].biaya_charge'
                 }
                 ,
                 {
-                    data: 'durasi'
+                    data: 'dokter[].durasi'
                 }
                 ,
                 {
-                    data: 'users.status.status'
+                    data: 'status.status'
                 }
                 ,
                 {

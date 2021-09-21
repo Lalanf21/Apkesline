@@ -65,7 +65,6 @@ class UsersController extends Controller
             $dataDokter['durasi'] = $request->durasi;
             $dataDokter['no_hp'] = $request->no_hp;
             $dataDokter['users_id'] = $users->id;
-            $dataDokter['status_id'] = 10;
             $dokter = DokterModel::create($dataDokter);
         }else{
             $request->validate(
@@ -109,7 +108,7 @@ class UsersController extends Controller
     
     public function edit($id)
     {
-        $data = UsersModel::where('id',$id)->first();
+        $data = UsersModel::where('id',$id)->firstOrFail();
         $spesialis = SpesialisModel::all();
         $gender = GenderModel::all();
         $level = LevelUsersModel::all();
@@ -119,7 +118,7 @@ class UsersController extends Controller
     
     public function update(Request $request, $id)
     {   
-        $data = UsersModel::where('id',$id)->first();
+        $data = UsersModel::where('id',$id)->firstOrFail();
         if ($request->level_user_id != 3) {
             $data->update([
                 'nama' => $request->nama,
@@ -127,7 +126,7 @@ class UsersController extends Controller
                 'gender_id' => $request->gender_id,
                 'level_user_id' => $request->level_user_id
             ]);
-            $dokter = DokterModel::where('users_id', $id)->first();
+            $dokter = DokterModel::where('users_id', $id)->firstOrFail();
             $dokter->delete();
         }else{
             $data->update([
@@ -136,6 +135,8 @@ class UsersController extends Controller
                 'gender_id' => $request->gender_id,
                 'level_user_id' => $request->level_user_id
             ]);
+
+            // store data dokter
             $dataDokter['nip'] = $request->nip;
             $dataDokter['spesialis_id'] = $request->spesialis_id;
             $dataDokter['biaya_charge'] = $request->biaya_charge;
@@ -144,22 +145,32 @@ class UsersController extends Controller
             $dataDokter['users_id'] = $id;
 
             DokterModel::create($dataDokter);
+            if (!$data->wasChanged()) {    
+                session()->flash('error', 'Data gagal di hapus ');
+            }else{
+                session()->flash('success', 'Data berhasil di hapus ');
+            }
         }
 
-        return redirect()->route('users.index')->with('status', 'Berhasil di update !');
+        return redirect()->route('users.index');
     }
 
     
     public function destroy($id)
     {
-        $data = UsersModel::where('id',$id)->first();
-        $data->delete();
-        return redirect()->route('users.index')->with('status', 'Berhasil di Hapus !');
+        $data = UsersModel::where('id',$id)->firstOrFail();
+        $data->update(['status_id'=> 2]);
+        if (!$data->wasChanged()) {    
+            session()->flash('error', 'Data gagal di hapus ');
+        }else{
+            session()->flash('success', 'Data berhasil di hapus ');
+        }
+        return redirect()->route('users.index');
     }
 
     public function list_users()
     {
-        $item = UsersModel::with(['gender','level_user'])->get();
+        $item = UsersModel::with(['gender','level_user'])->where('status_id','!=',2)->get();
         return DataTables::of($item)
             ->rawColumns(['action'])
             ->addIndexColumn()

@@ -8,18 +8,13 @@
         <hr>
     </div>
 </div>
- @if (session('status'))
-    <div class="row">
-        <div class="col-md-12">
-            <div class="alert alert-success alert-dismissible fade show" role="alert">
-                <strong>{{ session('status') }}</strong>
-                <button type="button" class="close" data-dismiss="alert" aria-label="Close">
-                    <span aria-hidden="true">&times;</span>
-                </button>
-            </div>
-        </div>
+
+<div class="row my-2">
+    <div class="col">
+        <a href="{{ route('users.index') }}" class="btn btn-info"><i class="fas fa-arrow-left"></i> Kembali </a>
     </div>
-@endif
+</div>
+
 <div class="row my-3 justify-content-center">
     <div class="col-md-12">
         <div class="card">
@@ -31,7 +26,7 @@
                         <div class="col">
                             <div class="form-group">
                                 <label for="username">Username</label>
-                                <input type="text" class="form-control" name="username" value="{{ $data->username }}">
+                                <input type="text" class="form-control" name="username" value="{{ $data->username }}" required >
                                 @error('username')
                                 <div class="text-danger">{{ $message }}</div>
                                 @enderror
@@ -40,7 +35,7 @@
                         <div class="col">
                             <div class="form-group">
                                 <label for="nama">Nama Lengkap</label>
-                                <input type="text" class="form-control" name="nama" value="{{ $data->nama }}">
+                                <input type="text" class="form-control" name="nama" value="{{ $data->nama }}"required >
                                 @error('nama')
                                 <div class="text-danger">{{ $message }}</div>
                                 @enderror
@@ -87,7 +82,7 @@
                             <div class="col">
                                 <div class="form-group">
                                     <label for="nip">NIP</label>
-                                    <input type="text" class="form-control" name="nip" value="{{ old('nip') }}">
+                                    <input type="text" class="form-control" name="nip" value="{{ old('nip') }}" required >
                                     @error('nip')
                                     <div class="text-danger">{{ $message }}</div>
                                     @enderror
@@ -96,7 +91,7 @@
                             <div class="col">
                                 <div class="form-group">
                                     <label for="no_hp">No hp</label>
-                                    <input type="text" class="form-control" name="no_hp" value="{{ old('no_hp') }}" >
+                                    <input type="text" class="form-control" name="no_hp" value="{{ old('no_hp') }}" required >
                                     @error('no_hp')
                                     <div class="text-danger">{{ $message }}</div>
                                     @enderror
@@ -123,7 +118,7 @@
                             <div class="col">
                                 <div class="form-group">
                                     <label for="biaya_charge"> Jasa dokter* </label>
-                                    <input type="text" class="form-control" name="biaya_charge" value="{{ old('biaya_charge') }}">
+                                    <input type="number" class="form-control" name="biaya_charge" value="{{ old('biaya_charge') }}" required >
                                     <div class="text-muted"> *Dalam satuan Rp </div>
                                     @error('biaya_charge')
                                     <span class="text-danger">{{ $message }}</span>
@@ -133,7 +128,7 @@
                             <div class="col">
                                 <div class="form-group">
                                     <label for="durasi">Durasi konsultasi* </label>
-                                    <input type="text" class="form-control" name="durasi" value="{{ old('durasi') }}">
+                                    <input type="number" class="form-control" name="durasi" value="{{ old('durasi') }}" required >
                                     <span class="text-muted">*Dalam satuan menit</span>
                                     @error('durasi')
                                     <div class="text-danger">{{ $message }}</div>
