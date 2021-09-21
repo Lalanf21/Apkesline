@@ -89,7 +89,7 @@ class UsersController extends Controller
             $users = UsersModel::create($data);
         }
 
-        if (!$users->id || !$dokter->id) {    
+        if (!$users->id) {    
             session()->flash('error', 'Data gagal di simpan ');
         }else{
             session()->flash('success', 'Data berhasil di simpan ');

@@ -28,9 +28,7 @@ class LoginController extends Controller
 
     protected function authenticated(Request $request, $user)
     {
-        return redirect()->route('dashboard');
-        // echo 'login';
-        
+        return redirect()->route('dashboard');        
     }
 
     public function logout(Request $request)

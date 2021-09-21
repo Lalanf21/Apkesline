@@ -92,7 +92,7 @@
                             <div class="col">
                                 <div class="form-group">
                                     <label for="nip">NIP</label>
-                                    <input type="text" class="form-control" name="nip" value="{{ old('nip') }}" required >
+                                    <input type="text" class="form-control" name="nip" value="{{ old('nip') }}" >
                                     @error('nip')
                                     <div class="text-danger">{{ $message }}</div>
                                     @enderror
@@ -101,7 +101,7 @@
                             <div class="col">
                                 <div class="form-group">
                                     <label for="no_hp">No hp</label>
-                                    <input type="text" class="form-control" name="no_hp" value="{{ old('no_hp') }}" required >
+                                    <input type="text" class="form-control" name="no_hp" value="{{ old('no_hp') }}" >
                                     @error('no_hp')
                                     <div class="text-danger">{{ $message }}</div>
                                     @enderror
@@ -128,7 +128,7 @@
                             <div class="col">
                                 <div class="form-group">
                                     <label for="biaya_charge"> Jasa dokter* </label>
-                                    <input type="number" class="form-control" name="biaya_charge" value="{{ old('biaya_charge') }}" required >
+                                    <input type="number" class="form-control" name="biaya_charge" value="{{ old('biaya_charge') }}" >
                                     <div class="text-muted"> *Dalam satuan Rp </div>
                                     @error('biaya_charge')
                                     <span class="text-danger">{{ $message }}</span>
@@ -138,7 +138,7 @@
                             <div class="col">
                                 <div class="form-group">
                                     <label for="durasi">Durasi konsultasi* </label>
-                                    <input type="number" class="form-control" name="durasi" value="{{ old('durasi') }}" required >
+                                    <input type="number" class="form-control" name="durasi" value="{{ old('durasi') }}" >
                                     <span class="text-muted">*Dalam satuan menit</span>
                                     @error('durasi')
                                     <div class="text-danger">{{ $message }}</div>

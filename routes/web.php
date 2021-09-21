@@ -7,9 +7,9 @@ Route::get('/', '\App\Http\Controllers\Auth\LoginController@showLoginForm');
 
 Route::get('/logout', '\App\Http\Controllers\Auth\LoginController@logout');
 Auth::routes(['reset' => false]);
+Route::get('/dashboard', 'DashboardController@index')->name('dashboard');
 
-Route::middleware('auth')->group(function(){
-    Route::get('/dashboard', 'DashboardController@index')->name('dashboard');
+Route::middleware(['auth','level:1'])->group(function(){
   
     // Routes dokter
     Route::get('/dokter/list', 'DokterController@list_dokter')->name('list-dokter');

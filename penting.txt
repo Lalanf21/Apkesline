@@ -8,8 +8,15 @@ status
 120 terbaca
 1 tidak aktif
 
+level_user
+1 admin
+3 dokter
+2 Kepala klinik
+
 akun
 admin{
     username = admin
     pass = pass
 }
+
+https://www.youtube.com/watch?v=A9KbN0t4GdQ
