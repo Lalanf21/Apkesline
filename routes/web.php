@@ -17,6 +17,7 @@ Route::middleware(['auth','level:1'])->group(function(){
 
     // Routes pasien
     Route::get('/pasien/list', 'PasienController@list_pasien')->name('list-pasien');
+    Route::post('/pasien/topup', 'PasienController@topupSaldo')->name('topup');
     Route::resource('pasien', 'PasienController');
 
     

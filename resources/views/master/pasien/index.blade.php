@@ -38,16 +38,19 @@
 </div>  
 
 {{-- modal topup --}}
-<div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+<div class="modal fade" id="topupModal" tabindex="-1" role="dialog" aria-labelledby="topupModalLabel" aria-hidden="true">
   <div class="modal-dialog modal-dialog-centered" role="document">
     <div class="modal-content">
       <div class="modal-header">
-        <h5 class="modal-title" id="exampleModalLabel">Topup saldo pasien</h5>
+        <h5 class="modal-title" id="topupModalLabel">Topup saldo pasien</h5>
       </div>
       <div class="modal-body">
-        <form action="" method="post">
-        <label for="topup">Nominal Topup</label>
-        <input type="text" name="topup" id="topup" class="form-control">
+        <form action="{{ route('topup') }}" method="POST">
+        @method('post')
+        @csrf
+        <input type="hidden" name="pasien_id" id="pasienId" value="">
+        <label for="nominal">Nominal Topup</label>
+        <input type="number" name="nominal" id="nominal" class="form-control">
         <span class="text-muted">*Dalam satuan Rp</span>
       </div>
       <div class="modal-footer">
@@ -63,6 +66,15 @@
 @endsection
 
 @push('after-script')
+<script>
+    $(document).on("click", ".topupModal", function () {
+     var pasienId = $(this).data('id');
+     $(".modal-body #pasienId").val( pasienId );
+     // As pointed out in comments, 
+     // it is unnecessary to have to manually call the modal.
+     // $('#addBookDialog').modal('show');
+});
+</script>
 <script>
     $(function() {
         $('#pasien').DataTable({

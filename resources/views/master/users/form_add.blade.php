@@ -27,7 +27,7 @@
                         <div class="col">
                             <div class="form-group">
                                 <label for="username">Username</label>
-                                <input type="text" autofocus class="form-control" name="username" value="{{ old('username') }}" required >
+                                <input type="text" autofocus class="form-control" name="username" value="{{ old('username') }}" id="username" required >
                                 @error('username')
                                 <div class="text-danger">{{ $message }}</div>
                                 @enderror
@@ -64,7 +64,7 @@
                         <div class="col">
                             <div class="form-group">
                                 <label for="password">Password</label>
-                                <input type="password" class="form-control" name="password" required >
+                                <input type="password" class="form-control" name="password" id="password" readonly >
                                 @error('password')
                                 <div class="text-danger">{{ $message }}</div>
                                 @enderror
@@ -170,8 +170,12 @@
         }else{
           $("#dokter").hide();
         }
-
     }
+
+    $("#username").keyup(function() {
+        $('#password').val($(this).val());
+    })
+    
 </script>
 @endpush
 

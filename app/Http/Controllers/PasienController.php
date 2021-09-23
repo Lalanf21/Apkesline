@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Model\GenderModel;
 use App\Model\PasienModel;
 use App\Model\StatusModel;
+use App\Model\TopupModel;
 use Illuminate\Http\Request;
 use DataTables;
 
@@ -106,6 +107,28 @@ class PasienController extends Controller
         return redirect()->route('pasien.index');
     }
 
+    public function topupSaldo(request $request)
+    {
+        $pasien_id = $request->pasien_id;
+        $users_id = auth()->user()->id;
+        $nominal = $request->nominal;
+        TopupModel::create([
+            'pasien_id'=> $pasien_id,
+            'users_id'=> $users_id,
+            'nominal'=> $nominal,
+        ]);
+        $saldo = PasienModel::where('id', $pasien_id)->firstOrFail();
+        $saldo->saldo += $nominal;
+        $saldo->update();
+
+        if (!$saldo->wasChanged()) {    
+            session()->flash('error', 'Saldo gagal di tambahkan');
+        }else{
+            session()->flash('success', 'Berhasil topup saldo ');
+        }
+        return redirect()->route('pasien.index');
+    }
+
     public function list_pasien()
     {
         $item = PasienModel::with(['gender','status'])->where('status_id','!=','2')->get() ;
@@ -120,7 +143,7 @@ class PasienController extends Controller
                 return $action;
             })
             ->addColumn('topup', function($item){
-                return '<button type="button" data-bs-toggle="modal" data-bs-target="#exampleModal" class="btn btn-light"><i class="fas fa-wallet"></i></button>';
+                return '<button type="button" data-bs-toggle="modal" data-bs-target="#topupModal" data-id="'.$item->id.'" class="topupModal btn btn-light"><i class="fas fa-wallet"></i></button>';
             })
             ->make(true);
     }
