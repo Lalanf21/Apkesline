@@ -6,7 +6,7 @@
     <div class="card-body">
         <h2 class="card-title" style="color: black;">Management dokter</h2>
         <hr>
-        <a href="{{ route('dokter.create') }}" class="btn bg-gradient-primary">Tambah Data</a>
+        <a href="{{ route('dokter.create') }}" class="btn bg-gradient-primary" id="addDataDokter">Tambah Data</a>
     </div>
 </div>
  
@@ -87,6 +87,20 @@
         });
     });
 
+</script>
+
+<script>
+    $(document).keydown(function(event) {
+        if (event.altKey && event.which === 78)
+        {
+            openWebsite($('a#addDataDokter'))
+            event.preventDefault();
+        }
+    });
+
+    function openWebsite(obj) {
+        window.location.href = $(obj).attr("href");
+    }
 </script>
 
 @endpush

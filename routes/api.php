@@ -17,3 +17,8 @@ use Illuminate\Support\Facades\Route;
 Route::middleware('auth:api')->get('/user', function (Request $request) {
     return $request->user();
 });
+
+Route::get('pasien/{kode_unik}/{no_hp}','API\PasienController@getPasien');
+Route::post('pasien','API\PasienController@updateSaldo');
+Route::get('spesialis','API\SpesialisController@getSpesialis');
+Route::get('dokter/{spesialis_id}','API\DokterController@getDokter');
