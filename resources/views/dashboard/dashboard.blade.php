@@ -2,27 +2,30 @@
 @section('title','Dashboard')
 @section('content')
 <div class="row">
-    <div class="col-lg-4 col-sm-4">
-      <div class="card">
-        <div class="card-body p-3">
-          <div class="row">
-            <div class="col-8">
-              <div class="numbers">
-                <h4 class="text-sm mb-0 text-capitalize font-weight-bold">User</h4>
-                <h3 class="font-weight-bolder mb-0">
-                  {{ $user }}
-                </h3>
-              </div>
+  @if (Auth()->user()->level_user_id === 1)
+  <div class="col-lg-4 col-sm-4">
+    <div class="card">
+      <div class="card-body p-3">
+        <div class="row">
+          <div class="col-8">
+            <div class="numbers">
+              <h4 class="text-sm mb-0 text-capitalize font-weight-bold">User</h4>
+              <h3 class="font-weight-bolder mb-0">
+                {{ $user }}
+              </h3>
             </div>
-            <div class="col-4 text-end">
-              <div class="icon icon-shape bg-gradient-primary shadow text-center border-radius-md">
-                <i class="fas fa-users" aria-hidden="true"></i>
-              </div>
+          </div>
+          <div class="col-4 text-end">
+            <div class="icon icon-shape bg-gradient-primary shadow text-center border-radius-md">
+              <i class="fas fa-users" aria-hidden="true"></i>
             </div>
           </div>
         </div>
       </div>
     </div>
+  </div>
+  @endif
+
     <div class="col-lg-4 col-sm-4">
       <div class="card">
         <div class="card-body p-3">

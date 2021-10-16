@@ -41,8 +41,8 @@
           </h6>
         </li>
         <li class="nav-item">
-          <a class="nav-link" href="">
-            <span class="nav-link-text ms-1"> <i class="fas fa-users"></i> Kunjungan pasien</span>
+          <a class="nav-link" href="{{ route('laporan-topup') }}">
+            <span class="nav-link-text ms-1"> <i class="fas fa-users"></i> Topup pasien</span>
           </a>
         </li>
 

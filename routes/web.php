@@ -26,6 +26,10 @@ Route::middleware(['auth','level:1'])->group(function(){
     Route::resource('users', 'UsersController');
 });
 
+Route::middleware(['auth','level:2'])->group(function(){
+    Route::get('/laporan/topup', 'LaporanController@index')->name('laporan-topup');
+});
+
 
 
 
