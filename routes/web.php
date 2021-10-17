@@ -28,6 +28,7 @@ Route::middleware(['auth','level:1'])->group(function(){
 
 Route::middleware(['auth','level:2'])->group(function(){
     Route::get('/laporan/topup', 'LaporanController@index')->name('laporan-topup');
+    Route::get('/laporan/filter', 'LaporanController@filter')->name('filter');
 });
 
 
